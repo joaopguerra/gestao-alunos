@@ -23,10 +23,10 @@ public class GestaoAlunosApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Aluno a1 = new Aluno(1L, "Aluno 1");
-		Aluno a2 = new Aluno(2L, "Aluno 2");
-		Aluno a3 = new Aluno(3L, "Aluno 3");
-		Aluno a4 = new Aluno(4L, "Aluno 4");
+		Aluno a1 = new Aluno(1, "Aluno 1");
+		Aluno a2 = new Aluno(2, "Aluno 2");
+		Aluno a3 = new Aluno(3, "Aluno 3");
+		Aluno a4 = new Aluno(4, "Aluno 4");
 		
 		alunoRepository.saveAll(Arrays.asList(a1, a2, a3, a4));
 		
