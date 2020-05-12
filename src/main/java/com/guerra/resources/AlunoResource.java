@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.guerra.domain.Aluno;
 import com.guerra.services.AlunoService;
 
-import javassist.tools.rmi.ObjectNotFoundException;
-
 @RestController
 @RequestMapping(value = "/alunos")
 public class AlunoResource {
@@ -24,15 +22,14 @@ public class AlunoResource {
 	@Autowired
 	private AlunoService service;
 	
-	@GetMapping
+	@GetMapping()
 	public ResponseEntity<List<Aluno>> findAll() {
 		List<Aluno> obj = service.buscar();
-		return ResponseEntity.ok().body(obj);
-		
+		return ResponseEntity.ok().body(obj);		
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Aluno> findById (@PathVariable Integer id) throws ObjectNotFoundException{
+	public ResponseEntity<Aluno> findById (@PathVariable Integer id) {
 		Aluno obj = service.buscarPorId(id);
 		return ResponseEntity.ok().body(obj);
 	}
@@ -43,7 +40,7 @@ public class AlunoResource {
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete (@PathVariable Integer id) throws ObjectNotFoundException{
+	public ResponseEntity<Void> delete (@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}

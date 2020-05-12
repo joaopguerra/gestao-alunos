@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.guerra.domain.Aluno;
 import com.guerra.repositories.AlunoRepository;
+import com.guerra.services.exceptions.ObjectNotFoundException;
 
-import javassist.tools.rmi.ObjectNotFoundException;
 
 @Service
 public class AlunoService {
@@ -22,17 +22,17 @@ public class AlunoService {
 		return obj;
 	}
 	
-	public Aluno buscarPorId(Integer id) throws ObjectNotFoundException {
+	public Aluno buscarPorId(Integer id) {
 		Optional<Aluno> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Aluno não encontrado! Id: " + id + "Tipo: " + Aluno.class.getName()));
+				"Aluno não encontrado! Id: " + id ));
 	}
 	
 	public Aluno adicionar(Aluno obj) {
 		return repo.save(obj);
 	}
 
-	public void delete(Integer id) throws ObjectNotFoundException {
+	public void delete(Integer id) {
 		repo.deleteById(id);
 		
 	}
