@@ -25,7 +25,7 @@ public class AlunoService {
 	public Aluno buscarPorId(Integer id) {
 		Optional<Aluno> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Aluno não encontrado! Id: " + id ));
+				"Aluno não encontrado!"));
 	}
 	
 	public Aluno adicionar(Aluno obj) {
@@ -33,6 +33,7 @@ public class AlunoService {
 	}
 
 	public void delete(Integer id) {
+		buscarPorId(id);
 		repo.deleteById(id);
 		
 	}

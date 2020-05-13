@@ -1,37 +1,41 @@
 package com.guerra.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Aluno implements Serializable {
+public class Turma implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String nome;
+	private String serie;
+	private String turma;
 	
-	@ManyToOne
-	@JoinColumn(name = "turma_id")
-	private Turma turma;
+	@OneToMany(mappedBy = "turma")
+	@JsonIgnore
+	private List<Aluno> alunos = new ArrayList<>();
 	
-	public Aluno() {
+	public Turma() {
 	}
 
-	public Aluno(Integer id, String nome, Turma turma) {
+	public Turma(Integer id, String serie, String turma) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.setTurma(turma);
+		this.serie = serie;
+		this.turma = turma;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -40,20 +44,28 @@ public class Aluno implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getSerie() {
+		return serie;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setSerie(String serie) {
+		this.serie = serie;
 	}
 
-	public Turma getTurma() {
+	public String getTurma() {
 		return turma;
 	}
 
-	public void setTurma(Turma turma) {
+	public void setTurma(String turma) {
 		this.turma = turma;
+	}
+	
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
 	}
 
 	@Override
@@ -72,7 +84,7 @@ public class Aluno implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Aluno other = (Aluno) obj;
+		Turma other = (Turma) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
