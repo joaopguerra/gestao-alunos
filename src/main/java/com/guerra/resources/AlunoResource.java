@@ -20,9 +20,10 @@ import com.guerra.services.AlunoService;
 public class AlunoResource {
 	
 	@Autowired
-	private AlunoService service;
+	private AlunoService service;	
 	
-	@GetMapping()
+	
+	@GetMapping
 	public ResponseEntity<List<Aluno>> findAll() {
 		List<Aluno> obj = service.buscar();
 		return ResponseEntity.ok().body(obj);		

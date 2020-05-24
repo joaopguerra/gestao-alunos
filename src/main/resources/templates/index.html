@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Gestão de Alunos</title>
+<link  rel="stylesheet" href="static/styles.css"/>	
+</head>
+
+<body>
+
+
+	<div class="alunos">
+		<h1>Lista de Alunos</h1>
+	</div>
+	<div class="alunos">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nome</th>
+					<th>Série</th>
+					<th>Sala</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="aluno : ${alunos}">
+					<td th:text="${aluno.id}"></td>
+					<td th:text="${aluno.nome}"></td>
+					<td th:text="${aluno.turma.serie}"></td>
+					<td th:text="${aluno.turma.turma}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

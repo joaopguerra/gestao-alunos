@@ -8,30 +8,35 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.transaction.Transactional;
 
 @Entity
 public class Aluno implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	
+	private double nota1;
+	private double nota2;
+
 	@ManyToOne
 	@JoinColumn(name = "turma_id")
 	private Turma turma;
-	
+
 	public Aluno() {
 	}
 
-	public Aluno(Integer id, String nome, Turma turma) {
+	public Aluno(Integer id, String nome, double nota1, double nota2, Turma turma) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.setTurma(turma);
+		this.nota1 = nota1;
+		this.nota2 = nota2;
+		this.turma = turma;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -46,6 +51,28 @@ public class Aluno implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	@Transactional
+	public double getMedia() {
+		double media = (nota1 + nota2) / 2;
+		return media;
+	}
+
+	public double getNota1() {
+		return nota1;
+	}
+
+	public void setNota1(double nota1) {
+		this.nota1 = nota1;
+	}
+
+	public double getNota2() {
+		return nota2;
+	}
+
+	public void setNota2(double nota2) {
+		this.nota2 = nota2;
 	}
 
 	public Turma getTurma() {

@@ -34,10 +34,10 @@ public class GestaoAlunosApplication implements CommandLineRunner {
 		
 		turmaRepository.saveAll(Arrays.asList(t1, t2, t3));
 		
-		Aluno a1 = new Aluno(1, "Aluno 1", t2);
-		Aluno a2 = new Aluno(2, "Aluno 2", t1);
-		Aluno a3 = new Aluno(3, "Aluno 3", t1);
-		Aluno a4 = new Aluno(4, "Aluno 4", t3);
+		Aluno a1 = new Aluno(1, "Aluno 1", 8.0, 7.5, t2);
+		Aluno a2 = new Aluno(2, "Aluno 2", 6.5, 5.0, t1);
+		Aluno a3 = new Aluno(3, "Aluno 3", 5.5, 9.0, t1);
+		Aluno a4 = new Aluno(4, "Aluno 4", 7.8, 5.5, t3);
 		
 		alunoRepository.saveAll(Arrays.asList(a1, a2, a3, a4));
 		
