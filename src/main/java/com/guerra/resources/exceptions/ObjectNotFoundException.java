@@ -1,4 +1,4 @@
-package com.guerra.services.exceptions;
+package com.guerra.resources.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;

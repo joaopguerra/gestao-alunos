@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,6 +23,9 @@ public class Turma implements Serializable {
 	private String serie;
 	private String turma;
 	
+	@OneToOne
+	private Escola escola;
+	
 	@OneToMany(mappedBy = "turma")
 	@JsonIgnore
 	private List<Aluno> alunos = new ArrayList<>();
@@ -29,11 +33,12 @@ public class Turma implements Serializable {
 	public Turma() {
 	}
 
-	public Turma(Integer id, String serie, String turma) {
+	public Turma(Integer id, String serie, String turma, Escola escola) {
 		super();
 		this.id = id;
 		this.serie = serie;
 		this.turma = turma;
+		this.escola = escola;
 	}
 
 	public Integer getId() {
@@ -66,6 +71,14 @@ public class Turma implements Serializable {
 
 	public void setAlunos(List<Aluno> alunos) {
 		this.alunos = alunos;
+	}
+
+	public Escola getEscola() {
+		return escola;
+	}
+
+	public void setEscola(Escola escola) {
+		this.escola = escola;
 	}
 
 	@Override

@@ -1,6 +1,7 @@
-package com.guerra.resources;
+package com.guerra.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,35 +14,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.guerra.domain.Turma;
-import com.guerra.services.TurmaService;
+import com.guerra.repositories.TurmaRepository;
 
 @RestController
 @RequestMapping(value = "/turmas")
-public class TurmaResource {
+public class TurmaController {
 	
 	@Autowired
-	private TurmaService service;
+	private TurmaRepository repo;	
 	
-	@GetMapping()
+	
+	@GetMapping
 	public ResponseEntity<List<Turma>> findAll() {
-		List<Turma> obj = service.buscar();
+		List<Turma> obj = repo.findAll();
 		return ResponseEntity.ok().body(obj);		
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Turma> findById (@PathVariable Integer id) {
-		Turma obj = service.buscarPorId(id);
-		return ResponseEntity.ok().body(obj);
+	public Optional <Turma> findById (@PathVariable Integer id) {
+		Optional<Turma> obj = repo.findById(id);
+		return obj;
 	}
 	
 	@PostMapping
 	public Turma create(@RequestBody Turma obj) {
-		return service.adicionar(obj);
+		return repo.save(obj);
 	}
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete (@PathVariable Integer id) {
-		service.delete(id);
+		repo.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
 }
