@@ -11,7 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Turma implements Serializable {
@@ -24,10 +25,11 @@ public class Turma implements Serializable {
 	private String turma;
 	
 	@OneToOne
+	@JsonBackReference
 	private Escola escola;
 	
 	@OneToMany(mappedBy = "turma")
-	@JsonIgnore
+	@JsonManagedReference
 	private List<Aluno> alunos = new ArrayList<>();
 	
 	public Turma() {

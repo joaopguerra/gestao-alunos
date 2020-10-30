@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.transaction.Transactional;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Aluno implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -23,6 +25,7 @@ public class Aluno implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "turma_id")
+	@JsonBackReference
 	private Turma turma;
 
 	public Aluno() {
