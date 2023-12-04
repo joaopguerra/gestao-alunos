@@ -1,4 +1,4 @@
-package com.guerra.domain;
+package com.guerra.domain.entity;
 
 import java.io.Serializable;
 

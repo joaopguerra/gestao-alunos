@@ -1,4 +1,4 @@
-package com.guerra.controllers;
+package com.guerra.api.controllers;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,31 +13,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.guerra.domain.Turma;
-import com.guerra.repositories.TurmaRepository;
+import com.guerra.domain.entity.Escola;
+import com.guerra.repositories.EscolaRepository;
 
 @RestController
-@RequestMapping(value = "/turmas")
-public class TurmaController {
+@RequestMapping(value = "/escolas")
+public class EscolaController {
 	
 	@Autowired
-	private TurmaRepository repo;	
+	private EscolaRepository repo;	
 	
 	
 	@GetMapping
-	public ResponseEntity<List<Turma>> findAll() {
-		List<Turma> obj = repo.findAll();
+	public ResponseEntity<List<Escola>> findAll() {
+		List<Escola> obj = repo.findAll();
 		return ResponseEntity.ok().body(obj);		
 	}
 	
 	@GetMapping(value = "/{id}")
-	public Optional <Turma> findById (@PathVariable Integer id) {
-		Optional<Turma> obj = repo.findById(id);
+	public Optional <Escola> findById (@PathVariable Integer id) {
+		Optional<Escola> obj = repo.findById(id);
 		return obj;
 	}
 	
 	@PostMapping
-	public Turma create(@RequestBody Turma obj) {
+	public Escola create(@RequestBody Escola obj) {
 		return repo.save(obj);
 	}
 	
